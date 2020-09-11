@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: src/main/resources/db/changelog/migrations/feature_001/feature_001_create_table_account.sql
