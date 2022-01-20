@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/v1/account")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class AccountResource {
     AccountService service;
     AccountDtoMapper mapper;
@@ -28,3 +29,6 @@ public class AccountResource {
         return service.createAccount(account);
     }
 }
+// headers: Origin, Content-Type, Accept, Authorization, Access-Control-Request-Headers
+//credentials: true
+//origin: http://localhost:4200

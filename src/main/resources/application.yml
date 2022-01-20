@@ -13,7 +13,7 @@ http:
   cors:
     allow:
       credentials: true
-      headers: Origin, Content-Type, Accept, Authorization, Access-Control-Request-Headers
+      headers: app Origin, Content-Type, Accept, Authorization, Access-Control-Request-Headers
       methods: GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH
       origin: http://localhost:4200
     max:
@@ -38,8 +38,8 @@ spring:
       hibernate.jdbc.time_zone: UTC
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/account?ApplicationName=account-api-local
-    username: postgres
-    password:
+    url: jdbc:postgresql://ec2-34-242-89-204.eu-west-1.compute.amazonaws.com:5432/dc49123i8ovsar?ApplicationName=user-msa
+    username: zcpkyvfaevqjss
+    password: b7b794b6feebe43c1ddcff63305aba989337e1bc9da3c1120bcf290e8ad0ec9b
 
 
