@@ -2,30 +2,30 @@ pipeline {
     agent any
         stages {
             stage('git clone') {
-                step {
+                steps {
                     checkout scm
                 }
             }
 
             stage('clean install') {
-                step {
+                steps {
                     mvn clean install
                 }
             }
             stage('liquibase update') {
-                step {
+                steps {
                     mvn liquibase:update
                 }
             }
 
             stage('Build image') {
-                step {
+                steps {
                     app = docker.build("user-msa/v1")
                 }
             }
 
             stage('Push image') {
-                step {
+                steps {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
