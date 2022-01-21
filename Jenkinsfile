@@ -40,7 +40,6 @@ pipeline {
             stage('Push image') {
                 steps {
                     sh 'docker push lelong1304/user-msa:latest'
-                    }
                 }
             }
         }
