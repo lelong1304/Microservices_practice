@@ -24,7 +24,7 @@ pipeline {
 
             stage('Build image') {
                 steps {
-                    sh 'docker build –t lelong1304/user-msa:latest .'
+                    sh 'docker build -t lelong1304/user-msa:latest .'
                 }
             }
             stage('Login Docker') {
