@@ -23,6 +23,11 @@ pipeline {
                     sh 'mvn liquibase:update'
                 }
             }
+            stage('Login Docker') {
+                steps {
+                    sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
+                }
+            }
 
             stage('Build image') {
                 steps {
@@ -31,16 +36,12 @@ pipeline {
                     }
                 }
             }
-            stage('Login Docker') {
-                steps {
-                    sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
-                }
-            }
+            
 
             stage('Push image') {
                 steps {
                     script {
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                        docker.withRegistry('https://hub.docker.com', 'docker') {
                             dockerImage.push("$BUILD_NUMBER")
                             dockerImage.push('latest')
                         }
