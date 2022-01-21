@@ -1,9 +1,5 @@
 pipeline {
     agent any
-        tools {
-                maven 'Maven 3.3.9'
-                jdk 'jdk11'
-        }
         environment {
             DOCKERHUB_CREDENTIAL=credential('docker')
         }
@@ -31,7 +27,7 @@ pipeline {
                     sh 'docker build -t lelong1304/user-msa:latest'
                 }
             }
-            stage('Build image') {
+            stage('Login Docker') {
                 steps {
                     sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
                 }
