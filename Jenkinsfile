@@ -28,7 +28,7 @@ pipeline {
                     sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
                 }
             }
-
+/*
             stage('Build image') {
                 steps {
                     script {
@@ -36,12 +36,13 @@ pipeline {
                     }
                 }
             }
-            
+*/
 
             stage('Push image') {
                 steps {
                     script {
                         docker.withRegistry('https://hub.docker.com', 'docker') {
+                            def dockerImage = docker.build("user-msa:${env.BUILD_ID}")
                             dockerImage.push("$BUILD_NUMBER")
                             dockerImage.push('latest')
                         }
