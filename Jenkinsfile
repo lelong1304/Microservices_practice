@@ -1,7 +1,9 @@
 pipeline {
     agent any
         environment {
+            imageName = "lelong1304/user-msa:latest"
             DOCKERHUB_CREDENTIAL=credentials('docker')
+            dockerImage = ''
         }
 
         stages {
@@ -24,7 +26,9 @@ pipeline {
 
             stage('Build image') {
                 steps {
-                    sh 'docker build -t lelong1304/user-msa:latest .'
+                    script {
+                        dockerImage = docker.build imageName
+                    }
                 }
             }
             stage('Login Docker') {
@@ -35,7 +39,12 @@ pipeline {
 
             stage('Push image') {
                 steps {
-                    sh 'docker push lelong1304/user-msa:latest'
+                    script {
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                    //sh 'docker push lelong1304/user-msa:latest'
                 }
             }
         }
