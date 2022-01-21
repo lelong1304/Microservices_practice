@@ -41,8 +41,9 @@ pipeline {
                 steps {
                     script {
                         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
+                            dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push('latest')
+                        }
                     }
                     //sh 'docker push lelong1304/user-msa:latest'
                 }
