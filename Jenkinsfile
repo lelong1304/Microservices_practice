@@ -18,11 +18,12 @@ pipeline {
                     sh 'mvn clean install'
                 }
             }
+            /*
             stage('liquibase update') {
                 steps {
                     sh 'mvn liquibase:update'
                 }
-            }
+            }*/
 
             stage('Build image') {
                 steps {
