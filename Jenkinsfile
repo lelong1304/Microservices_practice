@@ -56,10 +56,10 @@ pipeline {
                 }
             }
         }
-        /*
+
         post {
             always {
-                sh 'docker logout'
+                sh "docker rmi $imageName:$BUILD_NUMBER"
             }
-        }*/
+        }
 }
