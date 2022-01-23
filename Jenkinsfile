@@ -32,30 +32,32 @@ pipeline {
                     }
                 }
             }
-            /*
+
             stage('Login Docker') {
                 steps {
                     sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
                 }
-            }*/
+            }
 
 
             stage('Push image') {
                 steps {
                     script {
+                    /*
                         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                             dockerImage.push("${env.BUILD_NUMBER}")
                             dockerImage.push('latest')
-                        }
+                        }*/
+                        sh 'docker push lelong1304/user-msa:latest'
                     }
                     //sh 'docker push lelong1304/user-msa:latest'
                 }
             }
         }
-        /*
+
         post {
             always {
                 sh 'docker logout'
             }
-        }*/
+        }
 }
