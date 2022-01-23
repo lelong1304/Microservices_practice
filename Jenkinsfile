@@ -25,14 +25,14 @@ pipeline {
                     sh 'mvn liquibase:update'
                 }
             }*/
-
+/*
             stage('Build image') {
                 steps {
                     script {
                         dockerImage = docker.build imageName + ":$BUILD_NUMBER"
                     }
                 }
-            }
+            }*/
             /*
             stage('Login Docker') {
                 steps {
@@ -49,6 +49,8 @@ pipeline {
                             dockerImage.push("${env.BUILD_NUMBER}")
                             dockerImage.push('latest')
                             */
+                            dockerImage = docker.build('lelong1304/user-msa-dev:latest')
+
                             dockerImage.push()
                         }
                     }
