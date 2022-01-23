@@ -29,6 +29,8 @@ pipeline {
             stage('Build image') {
                 steps {
                     script {
+                                    sh 'docker rmi imageName'
+
                         dockerImage = docker.build imageName
                     }
                 }
