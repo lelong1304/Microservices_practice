@@ -33,12 +33,12 @@ pipeline {
                     }
                 }
             }*/
-            /*
+
             stage('Login Docker') {
                 steps {
                     sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
                 }
-            }*/
+            }
 
 
             stage('Push image') {
