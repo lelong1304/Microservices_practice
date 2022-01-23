@@ -1,7 +1,7 @@
 pipeline {
     agent any
         environment {
-            imageName = "lelong1304/user-msa"
+            imageName = "lelong1304/user-msa-dev"
             DOCKERHUB_CREDENTIAL=credentials('docker')
             dockerImage = ''
         }
@@ -29,9 +29,7 @@ pipeline {
             stage('Build image') {
                 steps {
                     script {
-                                    sh 'docker rmi $imageName'
-
-                        dockerImage = docker.build imageName
+                        dockerImage = docker.build imageName + ":$BUILD_NUMBER"
                     }
                 }
             }
