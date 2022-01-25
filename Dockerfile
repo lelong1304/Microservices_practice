@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 COPY target/*.jar user-msa.jar
 ENV JAVA_OPTS=""
