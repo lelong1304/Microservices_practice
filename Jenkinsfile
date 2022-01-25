@@ -43,7 +43,7 @@ pipeline {
             stage('Docker Build and Tag') {
                        steps {
 
-                            sh 'docker build -t user-msa-dev:latest .'
+                            sh 'docker build -t user-msa-dev:latest -f Dockerfile .'
                             sh 'docker tag user-msa-dev lelong1304/user-msa-dev:latest'
                             //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
 
