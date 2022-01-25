@@ -24,21 +24,22 @@ pipeline {
                     sh 'mvn liquibase:update'
                 }
             }
-/*
+
             stage('Build image') {
                 steps {
                     script {
                         dockerImage = docker.build imageName + ":$BUILD_NUMBER"
                     }
                 }
-            }*/
-            /*
+            }
+
 
             stage('Login Docker') {
                 steps {
                     sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --password-stdin'
                 }
-            }*/
+            }
+            /*
             stage('Docker Build and Tag') {
                        steps {
 
@@ -48,22 +49,17 @@ pipeline {
 
                       }
                     }
-
+*/
 
             stage('Push image') {
                 steps {
                     script {
-                        docker.withRegistry([ credentialsId: "docker", url: "" ]) {
-                                  sh  'docker push lelong1304/user-msa-dev:latest'
+                        docker.withRegistry('https://registry.hub.docker.com', 'git') {
 
-                        /*
+
                             dockerImage.push("${env.BUILD_NUMBER}")
                             dockerImage.push('latest')
-                            */
-                            /*
-                            dockerImage = docker.build('lelong1304/user-msa-dev:latest')
 
-                            dockerImage.push()*/
                         }
                     }
                     //sh 'docker push lelong1304/user-msa:latest'
