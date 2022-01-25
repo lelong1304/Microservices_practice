@@ -9,8 +9,7 @@ pipeline {
         stages {
             stage('git clone') {
                 steps {
-                    git 'https://github.com/lelong1304/Microservices_practice.git'
-                    //checkout scm
+                    checkout scm
                 }
             }
 
