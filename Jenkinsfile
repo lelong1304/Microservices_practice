@@ -54,7 +54,7 @@ pipeline {
             stage('Push image') {
                 steps {
                     script {
-                        docker.withRegistry('https://registry.hub.docker.com', 'git') {
+                        docker.withRegistry('https://hub.docker.com', 'docker') {
 
 
                             dockerImage.push("${env.BUILD_NUMBER}")
