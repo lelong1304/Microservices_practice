@@ -28,7 +28,9 @@ pipeline {
             stage('Build image') {
                 steps {
                     script {
-                        dockerImage = docker.build imageName + ":$BUILD_NUMBER"
+                        //dockerImage = docker.build imageName + ":$BUILD_NUMBER"
+                        sh 'docker image build -t user-msa-dev:latest .'
+
                     }
                 }
             }
@@ -54,11 +56,11 @@ pipeline {
             stage('Push image') {
                 steps {
                     script {
-                        docker.withRegistry('https://hub.docker.com', 'docker') {
-
-
+                        docker.withRegistry('', 'docker') {
+                            sh 'docker push lelong1304/user-msa:latest'
+/*
                             dockerImage.push("${env.BUILD_NUMBER}")
-                            dockerImage.push('latest')
+                            dockerImage.push('latest')*/
 
                         }
                     }
